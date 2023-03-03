@@ -2,7 +2,7 @@ import { SafeAreaView } from "react-native";
 import Signup from "./src/screens/auth/Signup";
 import React, { useEffect } from 'react';
 import { GoogleSignin } from "@react-native-google-signin/google-signin";
-import Config from "react-native-config";
+import { NavigationContainer } from "@react-navigation/native";
 
 GOOGLE_WEB_CLIENT_ID ="691961182994-99nksocefcji1fgdh2ernfc4t0eup5co.apps.googleusercontent.com"
 
@@ -17,10 +17,21 @@ const App = () => {
             offlineAccess: true,
         })
     }, [])
+
+    const theme = {
+        colors: {
+            background: colors.white,
+
+        },
+    };
     return (
-        <SafeAreaView>
-        <Signup />
-        </SafeAreaView>
+        <NavigationContainer theme={theme}>
+        <Stack.Navigator>
+            <Stack.Screen name="Splash" component={Splash}/>
+            <Stack.Screen name="Signup" component={Signup}/>
+            <Stack.Screen name="Login" component={Login}/>
+        </Stack.Navigator>
+        </NavigationContainer>
     );
 };
 
